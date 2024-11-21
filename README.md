@@ -88,15 +88,28 @@ So to set this project up and test it follow the next steps:
         -         platform: linux/amd64 
 - Run: composer install, if error: composer update, and then, composer install.
 - Run: npm install
+
+
+
 - Run: npm run dev
+
+
+- .env file DB_HOST=127.0.0.1 / DB_HOST=mysql
+
+
 - Run migrations: php artisan migrate
 - Run the Seeders: php artisan db:seed 
 - Run the Seeders: php artisan db:seed --class=InspectionSeeder
+
+  
 - Run: ./vendor/bin/sail up 
         - (In case of error: if you are in a MacBook (with MacBook chip m1, m2, etc.), please add to docker-compose.yml the next lines):
         -     selenium:
         -         platform: linux/amd64
 - And check at your browser: http://localhost:81/
+
+
+
 
 Once you are there you should be able to see welcomed to the Wind Farm App!
 
