@@ -5,45 +5,23 @@ namespace App\Repositories;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 //use Your Model
 use App\Models\Turbine;
+use App\Repositories\Contracts\TurbineRepositoryInterface;
+
 
 /**
  * Class TurbineRepository.
  */
 class TurbineRepository implements TurbineRepositoryInterface
 {
-    /**
-     * @return array
-     *  Return the model
-     */
-    public function all() 
+    public function getAllTurbines()
     {
-        return Turbine::all();
-    }
-    
-    /**
-    * @return array
-    *  Return the model
-    */
-    public function findById($id) 
-    {
-        return Turbine::findOrFail($id);
+        // Retrieve all turbines with their components
+        return Turbine::with('components')->get();
     }
 
-    public function store(array $data)
+    public function getTurbineById($id)
     {
-        return Turbine::store($data);
+        // Retrieve a turbine by its ID with components
+        return Turbine::with('components')->findOrFail($id);
     }
-
-    public function update($id, array $data)
-    {
-        $turbine = Turbine::findOrFail($id);
-        $turbine->update($data);
-        return $turbine;
-    }
-
-    public function delete($id)
-    {
-        return Turbine::destroy($id);
-    }
-
 }

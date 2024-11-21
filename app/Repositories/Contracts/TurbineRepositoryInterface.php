@@ -1,5 +1,6 @@
 <?php
 
+/*
 namespace App\Repositories\Contracts;
 
 interface TurbineRepositoryInterface {
@@ -12,3 +13,14 @@ interface TurbineRepositoryInterface {
 	
 }
 
+*/
+
+namespace App\Repositories\Contracts;
+
+use App\Models\Turbine;
+
+interface TurbineRepositoryInterface
+{
+    public function getAllTurbines();
+    public function getTurbineById($id);
+}

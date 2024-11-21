@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InspectionController;
+use App\Http\Controllers\TurbineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/inspections', [InspectionController::class, 'index']);
+
+Route::get('/turbines', [TurbineController::class, 'index']);
+
