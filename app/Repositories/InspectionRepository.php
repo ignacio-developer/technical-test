@@ -18,7 +18,7 @@ class InspectionRepository implements InspectionRepositoryInterface
     {
         //return Inspection::all();
         //return Inspection::with('components')->get();
-        return Inspection::with(['turbine', 'components'])->get();
+        return Inspection::with(['turbine', 'components'])->orderBy('created_at', 'asc')->get();
     }
 
     public function createInspection(array $data)
