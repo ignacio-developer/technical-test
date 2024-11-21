@@ -16,9 +16,18 @@ class Inspection extends Model
         return $this->belongsTo(Inspection::class); // Each inspection belongs to a turbine
     }
 
-    public function components():belongsToMany 
+    public function components() 
     {
-        return $this->belongsToMany(Component::class, 'inspections_components')->withPivot('grade');
+        /*
+        return $this->belongsToMany(Component::class, 'component_inspection')
+                    ->withPivot('grade')
+                    ->withTimestamps();
+        */
+
+        return $this->belongsToMany(Component::class, 'inspections_components')
+                    ->withPivot('grade')
+                    ->withTimestamps();
     }
+
 
 }
