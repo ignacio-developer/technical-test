@@ -74,8 +74,8 @@ I started by reading the whole task specifications and proceeded with setting up
 So to set this project up and test it follow the next steps:
 
 - Clone this repository: git clone https://github.com/cologiamp/technical-test.git 
-- Install Docker Desktop 
-- And install Composer dependencies by running:
+- Install Docker Desktop
+- Inside the repository folder, install Composer dependencies by running:
     * docker run --rm \
     * -u "$(id -u):$(id -g)" \
     * -v $(pwd):/var/www/html \
@@ -83,17 +83,19 @@ So to set this project up and test it follow the next steps:
     * laravelsail/php81-composer:latest \
     * composer install --ignore-platform-reqs
 
-- Clone this repository: git clone https://github.com/cologiamp/technical-test.git 
 - If you are in a MacBook (with MacBook chip m1, m2, etc.), please add to docker-compose.yml the next lines:
         -     selenium:
         -         platform: linux/amd64 
-- Run: composer install
+- Run: composer install, if error: composer update, and then, composer install.
 - Run: npm install
 - Run: npm run dev
 - Run migrations: php artisan migrate
 - Run the Seeders: php artisan db:seed 
 - Run the Seeders: php artisan db:seed --class=InspectionSeeder
-- Run: ./vendor/bin/sail up
+- Run: ./vendor/bin/sail up 
+        - (In case of error: if you are in a MacBook (with MacBook chip m1, m2, etc.), please add to docker-compose.yml the next lines):
+        -     selenium:
+        -         platform: linux/amd64
 - And check at your browser: http://localhost:81/
 
 Once you are there you should be able to see welcomed to the Wind Farm App!
@@ -127,4 +129,4 @@ Created the homepage, the turbine and the inspections lists components. And opte
 
 Note: I used GitHub during the whole process, pushed commits and created a PR (approved and merged) from ‘staging’ into ‘main’ branch that will make easier to see the added/edited files: PR Link: .
 
-Key parts to missing, “TO DO”: CRUD approach, feature to add Turbines, Components and/or inspections. API Authentication through Sanctum and an api token (header).
+Key parts missing, “TO DO”: CRUD approach, feature to add Turbines, Components and/or inspections. API Authentication through Sanctum and an api token (header). Unit Test?. And doubts regarding React, and Docker setup.
