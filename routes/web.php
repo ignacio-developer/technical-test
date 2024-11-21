@@ -14,12 +14,13 @@ use App\Http\Controllers\TurbineController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('app'); // Render the main React app (app.blade.php)
 });
 
-Route::get('/inspections', [InspectionController::class, 'index']);
+//Route::get('/inspections', [InspectionController::class, 'index']);
+Route::view('/inspections', 'inspections');
+Route::view('/turbines', 'turbines');
 
-Route::get('/turbines', [TurbineController::class, 'index']);
+//Route::get('/turbines', [TurbineController::class, 'index']);
 
