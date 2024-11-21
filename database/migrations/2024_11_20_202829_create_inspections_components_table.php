@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('inspections_components', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('turbine_id')->constrained()->onDelete('cascade');
+            $table->foreignId('inspection_id')->constrained()->onDelete('cascade');
             $table->foreignId('component_id')->constrained()->onDelete('cascade');
             $table->integer('grade')->check('grade >= 1 AND grade <= 5');
             $table->timestamps();
