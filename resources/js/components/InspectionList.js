@@ -37,7 +37,7 @@ const InspectionList = () => {
                         className="p-6 border rounded-lg bg-white shadow-md"
                     >
                         <h3 className="text-lg font-semibold">
-                            Turbine: {inspection.turbine.name}
+                            Inspection for: {inspection.turbine.name}
                         </h3>
 
                         <p className="text-sm text-gray-600">Inspection Date: {moment(inspection.created_at, "YYYY-MM-DD hh:mm:ss+ZZ").format("DD/MM/YYYY")}</p>
@@ -49,9 +49,9 @@ const InspectionList = () => {
                                         <strong>{component.name}:</strong> Grade{' '}
                                         <span
                                             className={`${
-                                                component.grade === 5
+                                                component.pivot.grade === 5
                                                     ? 'text-red-600'
-                                                    : component.grade >= 3
+                                                    : component.pivot.grade >= 3
                                                     ? 'text-yellow-500'
                                                     : 'text-green-600'
                                             } font-bold`}
