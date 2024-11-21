@@ -14,6 +14,17 @@ class InspectionController extends Controller
         $this->inspectionService = $inspectionService;
     }
 
+    /*
+    public function index(): JsonResponse
+    {
+        return response()->json(Inspection::with('turbine')->get());
+    }
+    */
+    public function index() 
+    {
+        return $this->inspectionService->getAllInspections();
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -23,10 +34,5 @@ class InspectionController extends Controller
 
         $inspection = $this->inspectionService->createInspection($validated);
         return response()->json($inspection, 201);
-    }
-
-    public function index() 
-    {
-        return $this->inspectionService->getAllInspections();
     }
 }
