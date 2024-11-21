@@ -16,7 +16,7 @@ class InspectionRepository implements InspectionRepositoryInterface
 
     public function getAllInspections()
     {
-        //return Inspection::all();
+        return Inspection::all();
         //return Inspection::with('components')->get();
     }
 
