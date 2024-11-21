@@ -83,6 +83,13 @@ So to set this project up and test it follow the next steps:
     * laravelsail/php81-composer:latest \
     * composer install --ignore-platform-reqs
 
+- Copy .env.example to env file. ----> I changed the port DB_PORT=3309, DB_HOST=127.0.0.1/DB_HOST=mysql 
+- Run: ./vendor/bin/sail up 
+        - (In case of error: if you are in a MacBook (with MacBook chip m1, m2, etc.), please add to docker-compose.yml the next lines):
+        -     selenium:
+        -         platform: linux/amd64
+- And check at your browser: http://localhost:81/
+  
 - If you are in a MacBook (with MacBook chip m1, m2, etc.), please add to docker-compose.yml the next lines:
         -     selenium:
         -         platform: linux/amd64 
@@ -92,11 +99,6 @@ So to set this project up and test it follow the next steps:
 
 
 - Run: npm run dev
-
-
-- .env file DB_HOST=127.0.0.1 / DB_HOST=mysql
-
-
 - Run migrations: php artisan migrate
 - Run the Seeders: php artisan db:seed 
 - Run the Seeders: php artisan db:seed --class=InspectionSeeder
