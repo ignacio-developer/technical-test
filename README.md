@@ -127,6 +127,6 @@ I made use of ReactJS, Tailwind CSS for the frontend (by using plugins like npm 
 And while coding the frontend I was adding the routes to the routes/api.php and set up the routes/web.php (React will manage all the routes). 
 Created the homepage, the turbine and the inspections lists components. And opted for using fetch() and response.json() for the http request to the Laravel API.
 
-Note: I used GitHub during the whole process, pushed commits and created a PR (approved and merged) from ‘staging’ into ‘main’ branch that will make easier to see the added/edited files: PR Link: .
+Note: I used GitHub during the whole process, pushed commits and created a PR (approved and merged) from ‘staging’ into ‘main’ branch that will make easier to see the added/edited files: PR Link: https://github.com/cologiamp/technical-test/pull/1.
 
 Key parts missing, “TO DO”: CRUD approach, feature to add Turbines, Components and/or inspections. API Authentication through Sanctum and an api token (header). Unit Testing. And doubts regarding Docker setup and ReactJS.
