@@ -83,9 +83,10 @@ So to set this project up and test it follow the next steps:
     * laravelsail/php81-composer:latest \
     * composer install --ignore-platform-reqs
 
-- Copy .env.example to env file. ----> I changed the port DB_PORT=3309, DB_HOST=127.0.0.1/DB_HOST=mysql 
-- Run: composer install, if error: composer update, and then, composer install.
+- Copy .env.example to .env file.
+- Run: composer install, if error: composer --ignore-platform-req=php update
 - Run: npm install
+- Run: npm run dev
 - Run: ./vendor/bin/sail up 
         - (In case of error: if you are in a MacBook (with MacBook chip m1, m2, etc.), please add to docker-compose.yml the next lines):
         -     selenium:
@@ -93,19 +94,15 @@ So to set this project up and test it follow the next steps:
 - And check at your browser: http://localhost:81/
   
 - php artisan key:generate
-- Run migrations: php artisan migrate
-- Run the Seeders: php artisan db:seed 
-- Run the Seeders: php artisan db:seed --class=InspectionSeeder
-
-- Run: npm run dev
-  
-
+- To run migrations and seeders the config at .env (should be DB_HOST=127.0.0.1), then:
+    - php artisan migrate
+    - php artisan db:seed
+ 
+- If you are unable to get API responses (lists). Please set the .env config to -> DB_HOST=mysql
 
 
-
-
-Once you are there you should be able to see welcomed to the Wind Farm App!
-
+Once you are here you should be able to see welcomed to the Wind Farm App!
+-----------------------------------------------------------------------------------
 Key points I consider during the development process.
 
 I decided to implement the solution by having three main entities: Turbines, Components and Inspections.
@@ -135,4 +132,4 @@ Created the homepage, the turbine and the inspections lists components. And opte
 
 Note: I used GitHub during the whole process, pushed commits and created a PR (approved and merged) from ‘staging’ into ‘main’ branch that will make easier to see the added/edited files: PR Link: .
 
-Key parts missing, “TO DO”: CRUD approach, feature to add Turbines, Components and/or inspections. API Authentication through Sanctum and an api token (header). Unit Test?. And doubts regarding React, and Docker setup.
+Key parts missing, “TO DO”: CRUD approach, feature to add Turbines, Components and/or inspections. API Authentication through Sanctum and an api token (header). Unit Testing. And doubts regarding Docker setup and ReactJS.
