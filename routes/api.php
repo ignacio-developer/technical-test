@@ -17,10 +17,6 @@ use App\Http\Controllers\InspectionController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 // Turbine Routes
 Route::get('/turbines', [TurbineController::class, 'index']); // Fetch all turbines with their components
 Route::get('/turbines/{id}', [TurbineController::class, 'show']); // Fetch a specific turbine with components
