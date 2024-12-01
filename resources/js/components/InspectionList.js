@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const InspectionList = () => {
     const [inspections, setInspections] = useState([]);
@@ -61,6 +62,12 @@ const InspectionList = () => {
                                     </li>
                                 ))}
                             </ul>
+                            <Link
+                                to={`/inspections/edit/${inspection.id}`}
+                                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                            >
+                                Edit Inspection
+                            </Link>
                         </div>
                     </li>
                 ))}

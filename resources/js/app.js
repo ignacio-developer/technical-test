@@ -5,6 +5,7 @@ import HomePage from './components/HomePage';
 import TurbineList from './components/TurbineList';
 import InspectionList from './components/InspectionList';
 import NavigationBar from './components/NavigationBar'; // Import NavigationBar
+import InspectionEdit from './components/InspectionEdit';
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
 				        <Route path="/" element={<HomePage />} />
 				        <Route path="/turbines" element={<TurbineList />} />
 				        <Route path="/inspections" element={<InspectionList />} />
+                        <Route path="/inspections/edit/:id" element={<InspectionEdit />} />
 				    </Routes>
 				</div>
 

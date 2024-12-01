@@ -26,7 +26,8 @@ Route::post('/components', [ComponentController::class, 'store']); // Create a n
 Route::put('/components/{id}', [ComponentController::class, 'update']); // Update an existing component
 
 // Inspection Routes
-Route::get('/inspections', [InspectionController::class, 'index']); // Create a new inspection for a turbine
+Route::get('/inspections/{id}', [InspectionController::class, 'edit']); // Edit an existing inspection
+Route::get('/inspections', [InspectionController::class, 'index']); // View the inspections for turbines
 Route::post('/inspections', [InspectionController::class, 'store']); // Create a new inspection for a turbine
 
 // Example for authentication routes (if needed in the future)

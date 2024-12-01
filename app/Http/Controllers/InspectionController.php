@@ -25,6 +25,18 @@ class InspectionController extends Controller
         return $this->inspectionService->getAllInspections();
     }
 
+    public function edit($id)
+    {
+        $inspection = $this->inspectionService->getInspectionById($id);
+        return response()->json($inspection);
+    }
+
+    public function create() 
+    {
+        return "Hello";
+        //return $this->inspectionService->getAllInspections();
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

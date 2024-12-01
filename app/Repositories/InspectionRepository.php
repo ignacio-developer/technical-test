@@ -26,4 +26,10 @@ class InspectionRepository implements InspectionRepositoryInterface
         // Create a new inspection record
         return Inspection::create($data);
     }
+
+    public function getInspectionById($id)
+    {
+        // Retrieve a turbine by its ID with components
+        return Inspection::with(['turbine', 'components'])->findOrFail($id);
+    }
 }
