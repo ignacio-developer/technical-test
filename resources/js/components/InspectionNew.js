@@ -71,19 +71,29 @@ const TurbinesList = () => {
 	                <label htmlFor="turbine" className="block font-medium">
 	                    Select Turbine:
 	                </label>
-	                <select
-	                    id="turbine"
-	                    value={selectedTurbine}
-	                    onChange={(e) => setSelectedTurbine(e.target.value)}
-	                    className="mt-1 p-2 border rounded w-full"
-	                >
-	                    <option value="">-- Choose Turbine --</option>
-	                    {turbines.map((turbine) => (
-	                        <option key={turbine.id} value={turbine.id}>
-	                            {turbine.name}
-	                        </option>
-	                    ))}
-	                </select>
+
+
+					<select
+					    value={selectedTurbine}
+					    onChange={(e) => {
+					    	console.log(e.target.value);
+							setSelectedTurbine(e.target.value);
+
+				            console.log('Selected Turbine ID:', e.target.value);
+				            console.log('Selected Turbine Data:', turbines.find((turbine) => turbine.id === Number(e.target.value)));
+				            console.log('All Turbines:', turbines);
+
+					    }}
+					className="mt-1 p-2 border rounded w-full"
+					>
+					    <option value="">Select a turbine</option>
+					    {turbines.map((turbine) => (
+					        <option key={turbine.id} value={turbine.id}>
+					            {turbine.name}
+					        </option>
+					    ))}
+					</select>
+
 	            </div>
 
 
@@ -91,8 +101,8 @@ const TurbinesList = () => {
                     <div>
                         <h3 className="font-medium">Grade Components:</h3>
                         {turbines
-                            .find((turbine) => turbine.id === selectedTurbine)
-                            .components.map((component) => (
+            	            .find((turbine) => turbine.id === parseInt(selectedTurbine, 10))?.components
+                            .map((component) => (
                                 <div key={component.id} className="mt-2">
                                     <label className="block">{component.name}:</label>
                                     <input
