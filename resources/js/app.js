@@ -6,6 +6,7 @@ import TurbineList from './components/TurbineList';
 import InspectionList from './components/InspectionList';
 import NavigationBar from './components/NavigationBar'; // Import NavigationBar
 import InspectionEdit from './components/InspectionEdit';
+import InspectionNew from './components/InspectionNew';
 
 const App = () => {
     return (
@@ -20,6 +21,8 @@ const App = () => {
 				        <Route path="/turbines" element={<TurbineList />} />
 				        <Route path="/inspections" element={<InspectionList />} />
                         <Route path="/inspections/edit/:id" element={<InspectionEdit />} />
+                        <Route path="/inspections/new" element={<InspectionNew />} />
+                        /inspections/new
 				    </Routes>
 				</div>
 
