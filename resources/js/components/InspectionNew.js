@@ -3,19 +3,16 @@ import { useParams, useNavigate } from 'react-router-dom'; // Use useNavigate he
 
 const TurbinesList = () => {
     const [turbines, setTurbines] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [selectedTurbine, setSelectedTurbine] = useState('');
-    const [components, setComponents] = useState([]);
-    const [selectedComponent, setSelectedComponent] = useState('');
-    const [grades, setGrades] = useState([]);
-    const [selectedGrade, setSelectedGrade] = useState('');
+    const [grades, setGrades] = useState({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Fetch turbines with their components
         fetch('/api/turbines')
             .then((response) => response.json())
             .then((data) => {
-                setTurbines(data); // Store turbines data in state
+                setTurbines(data);
                 console.log(data);
                 setLoading(false); // Stop the loading indicator
             })
@@ -31,8 +28,8 @@ const TurbinesList = () => {
     	console.log(e);
 
     	const payload = {
-    		turbine_id: selectedTurbine,
-    		components: components.map((component) => ({
+    		turbine_id: turbine.id,
+    		components: turbine.components.map((component) => ({
     			id: component.id,
     			grade: grades[component.id] || 0,
     		}))
@@ -88,24 +85,36 @@ const TurbinesList = () => {
 	                    ))}
 	                </select>
 	            </div>
-	            <div>
-	                <label htmlFor="turbine" className="block font-medium">
-	                    Select Turbine:
-	                </label>
-	                <select
-	                    id="turbine"
-	                    value={selectedTurbine}
-	                    onChange={(e) => setSelectedTurbine(e.target.value)}
-	                    className="mt-1 p-2 border rounded w-full"
-	                >
-	                    <option value="">-- Choose Turbine --</option>
-	                    {turbines.map((turbine) => (
-	                        <option key={turbine.id} value={turbine.id}>
-	                            {turbine.name}
-	                        </option>
-	                    ))}
-	                </select>
-	            </div>
+
+
+	            {selectedTurbine && (
+                    <div>
+                        <h3 className="font-medium">Grade Components:</h3>
+                        {turbines
+                            .find((turbine) => turbine.id === selectedTurbine)
+                            .components.map((component) => (
+                                <div key={component.id} className="mt-2">
+                                    <label className="block">{component.name}:</label>
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        max="5"
+                                        value={grades[component.id] || ''}
+                                        onChange={(e) =>
+                                            setGrades((prev) => ({
+                                                ...prev,
+                                                [component.id]: parseInt(e.target.value, 10),
+                                            }))
+                                        }
+                                        className="mt-1 p-2 border rounded w-full"
+                                    />
+                                </div>
+                            ))}
+                    </div>
+                )}
+
+
+
 	            <button
 	                    type="submit"
 	                    className="px-4 py-2 bg-blue-500 text-white rounded"
