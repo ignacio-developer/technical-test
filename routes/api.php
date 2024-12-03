@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TurbineController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\InspectionController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\MotorController;
 
 /*
@@ -31,7 +32,10 @@ Route::get('/inspections/{id}', [InspectionController::class, 'edit']); // Edit 
 Route::get('/inspections', [InspectionController::class, 'index']); // View the inspections for turbines
 Route::post('/inspections', [InspectionController::class, 'store']); // Create a new inspection for a turbine
 
-// Turbine Routes
+//Report Routes
+Route::get('/reports', [ReportController::class, 'index']); // Fetch all reports.
+
+// Motor Routes
 Route::get('/motors', [MotorController::class, 'index']); // Fetch all motors with their elements
 
 // Example for authentication routes (if needed in the future)
