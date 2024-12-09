@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TurbineController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\InspectionController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::get('/inspections/{id}', [InspectionController::class, 'edit']); // Edit 
 Route::get('/inspections', [InspectionController::class, 'index']); // View the inspections for turbines
 Route::post('/inspections', [InspectionController::class, 'store']); // Create a new inspection for a turbine
 
+Route::get('/checkout', [CheckoutController::class, 'checkout']);
 // Example for authentication routes (if needed in the future)
 // Route::post('/login', [AuthController::class, 'login']); // For login
 // Route::post('/register', [AuthController::class, 'register']); // For user registration
