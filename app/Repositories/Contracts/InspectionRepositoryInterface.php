@@ -8,4 +8,5 @@ interface InspectionRepositoryInterface
 {
     public function getAllInspections();
     public function createInspection(array $data);
+    public function getInspectionById(int $id);
 }

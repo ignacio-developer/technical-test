@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TurbineController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\InspectionController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\MotorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +19,6 @@ use App\Http\Controllers\InspectionController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 // Turbine Routes
 Route::get('/turbines', [TurbineController::class, 'index']); // Fetch all turbines with their components
 Route::get('/turbines/{id}', [TurbineController::class, 'show']); // Fetch a specific turbine with components
@@ -30,8 +28,15 @@ Route::post('/components', [ComponentController::class, 'store']); // Create a n
 Route::put('/components/{id}', [ComponentController::class, 'update']); // Update an existing component
 
 // Inspection Routes
-Route::get('/inspections', [InspectionController::class, 'index']); // Create a new inspection for a turbine
+Route::get('/inspections/{id}', [InspectionController::class, 'edit']); // Edit an existing inspection
+Route::get('/inspections', [InspectionController::class, 'index']); // View the inspections for turbines
 Route::post('/inspections', [InspectionController::class, 'store']); // Create a new inspection for a turbine
+
+//Report Routes
+Route::get('/reports', [ReportController::class, 'index']); // Fetch all reports.
+
+// Motor Routes
+Route::get('/motors', [MotorController::class, 'index']); // Fetch all motors with their elements
 
 // Example for authentication routes (if needed in the future)
 // Route::post('/login', [AuthController::class, 'login']); // For login
