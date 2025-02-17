@@ -31,6 +31,11 @@ const InspectionList = () => {
     return (
         <div className="p-4">
             <h2 className="text-xl font-bold">Turbine Inspections</h2>
+            <div className="mt-4">
+                <Link to={`/inspections/new`} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+                    New Inspection.
+                </Link>
+            </div>
             <ul className="mt-4 space-y-6">
                 {inspections.map((inspection) => (
                     <li
@@ -62,12 +67,14 @@ const InspectionList = () => {
                                     </li>
                                 ))}
                             </ul>
-                            <Link
-                                to={`/inspections/edit/${inspection.id}`}
-                                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-                            >
-                                Edit Inspection
-                            </Link>
+                            <div className="mt-4">
+                                <Link
+                                    to={`/inspections/edit/${inspection.id}`}
+                                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                                >
+                                    Edit Inspection
+                                </Link>
+                            </div>
                         </div>
                     </li>
                 ))}

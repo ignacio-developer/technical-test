@@ -63,5 +63,70 @@ laravelsail/php81-composer:latest \
 composer install --ignore-platform-reqs
 ```
 
-## Your Notes
+## Your Notes / Ignacio's Notes
 This is a place for you to add your notes, plans, thinking and any feedback you have for us of the task, please feel free to include whatever you like here, we'll make sure to read it. 
+--------------------------------------------------------------------------------------------
+I started by reading the whole task specifications and proceeded with setting up the environment. I installed Docker Desktop, configured my environment file, checked my ports and I learnt more about Laravel Sail.
+
+So to set this project up and test it follow the next steps:
+
+- Clone this repository: git clone https://github.com/cologiamp/technical-test.git 
+- Install Docker Desktop
+- Inside the repository folder, install Composer dependencies by running:
+    * docker run --rm \
+    * -u "$(id -u):$(id -g)" \
+    * -v $(pwd):/var/www/html \
+    * -w /var/www/html \
+    * laravelsail/php81-composer:latest \
+    * composer install --ignore-platform-reqs
+
+- Copy .env.example to .env file.
+- Run: composer install, if error: composer --ignore-platform-req=php update
+- Run: npm install
+- Run: npm run dev
+- Run: ./vendor/bin/sail up 
+        - (In case of error: if you are in a MacBook (with MacBook chip m1, m2, etc.), please add to docker-compose.yml the next lines):
+        -     selenium:
+        -         platform: linux/amd64
+- And check at your browser: http://localhost:81/
+  
+- php artisan key:generate
+- To run migrations and seeders the config at .env (should be DB_HOST=127.0.0.1), then:
+    - php artisan migrate
+    - php artisan db:seed
+ 
+- If you are unable to get API responses (lists). Please set the .env config to -> DB_HOST=mysql
+
+
+Once you are here you should be able to see welcomed to the Wind Farm App!
+-----------------------------------------------------------------------------------
+Key points I consider during the development process.
+
+I decided to implement the solution by having three main entities: Turbines, Components and Inspections.
+
+I proceeded to design the database structure (tables, fields/columns and their types, relationships).
+
+Turbine: id(int), name(string), timestamps.
+Component: id(int), turbine_id(foreign key to Turbine->id), name(string), timestamps.
+Inspections: id(int), turbine_id(foreign key to Turbine->id), title(string), notes(string), timestamps.
+Inspection_components: id(int), turbine_id(foreignKey to Turbine->id), component_id(foreignKey to Component->id), grade(int + check(1-5)).
+
+Here some questions came up. And with them, some answers that I would love to discuss. Like why did I choose this way to for the app model design.  How would I relate them? Do I need a Grade column for the Components table? Should I be updating it every time there is an inspection?
+
+So I decided that the relationships were going to be:
+- A Inspection belongsTo a Turbine.
+- A Turbine hasMany Components.
+- And a Inspection will assign a Grade to a component from a turbine (in the inspection_component table).
+
+I created Seeders to populate the database: with at least 5 turbines records with 4 of the mentioned components (Rotor, Hub, Blade, Generator) and also at least 3 inspections per turbine.
+
+From then on, I decided to develop Laravel API, using models and repositories to post and get the data from the DB. And controllers through services to communicate with the models.
+
+I made use of ReactJS, Tailwind CSS for the frontend (by using plugins like npm install react-doc and babel).
+
+And while coding the frontend I was adding the routes to the routes/api.php and set up the routes/web.php (React will manage all the routes). 
+Created the homepage, the turbine and the inspections lists components. And opted for using fetch() and response.json() for the http request to the Laravel API.
+
+Note: I used GitHub during the whole process, pushed commits and created a PR (approved and merged) from ‘staging’ into ‘main’ branch that will make easier to see the added/edited files: PR Link: .
+
+Key parts missing, “TO DO”: CRUD approach, feature to add Turbines, Components and/or inspections. API Authentication through Sanctum and an api token (header). Unit Testing. And doubts regarding Docker setup and ReactJS.

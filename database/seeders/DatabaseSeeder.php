@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\TurbineSeeder;
 use Database\Seeders\ComponentSeeder;
+use Database\Seeders\InspectionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TurbineSeeder::class,
             ComponentSeeder::class,
+            InspectionSeeder::class,
         ]);
     }
 }
