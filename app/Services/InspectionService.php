@@ -22,4 +22,9 @@ class InspectionService
     {
         return $this->inspectionRepository->createInspection($data);
     }
+
+    public function getInspectionById(int $id)
+    {
+        return $this->inspectionRepository->getInspectionById($id);
+    }
 }
